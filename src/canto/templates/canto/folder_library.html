@@ -1,0 +1,21 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+
+{% block footer %}{{ block.super }}
+    {% include "canto/partials/cdn_assets.html" %}
+
+    <script type="text/javascript" src="{% static "js/canto/folder_library.js" %}"></script>
+    <link rel="stylesheet" href="{% static "styles/canto/canto.css" %}">
+
+    <script type="text/javascript">
+        let tree_url = "{% url 'canto:tree-json' %}";
+        let album_url = "{% url 'canto:album-json' 'ID-PLACEHOLDER' %}";
+
+        initializeFolderLibrary("#canto-library", tree_url, album_url);
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div id="canto-library"></div>
+{% endblock %}

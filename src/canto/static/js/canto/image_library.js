@@ -1,4 +1,4 @@
-let initializeLibrary = function (selector, tree_url, album_url, binary_url, search_url, detail_url) {
+let initializeImageLibrary = function (selector, tree_url, album_url, binary_url, search_url, detail_url) {
     Vue.component('treeselect', VueTreeselect.Treeselect);
 
     Vue.component('search', {
@@ -159,7 +159,7 @@ let initializeLibrary = function (selector, tree_url, album_url, binary_url, sea
         },
         created: function () {
             let that = this;
-            fetch(tree_url).then(function (response) {
+            fetch(tree_url, {credentials: 'same-origin'}).then(function (response) {
                 return response.json();
             }).then(function (data) {
                 that.tree = data.results;

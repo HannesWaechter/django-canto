@@ -3,12 +3,11 @@
 
 
 {% block footer %}{{ block.super }}
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@riophae/vue-treeselect@0.0.37/dist/vue-treeselect.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@riophae/vue-treeselect@0.0.37/dist/vue-treeselect.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@riophae/vue-treeselect@0.0.37/dist/vue-treeselect.min.js"></script>
-    <script type="text/javascript" src="{% static "js/canto/canto.js" %}"></script>
+    {% include "canto/partials/cdn_assets.html" %}
+
+    <script type="text/javascript" src="{% static "js/canto/image_library.js" %}"></script>
     <link rel="stylesheet" href="{% static "styles/canto/canto.css" %}">
+
     <script type="text/javascript">
         let tree_url = "{% url 'canto:tree-json' %}";
         let album_url = "{% url 'canto:album-json' 'ID-PLACEHOLDER' %}";
@@ -21,7 +20,7 @@
             detail_url = "{{ detail_url }}";
         {% endif %}
 
-        initializeLibrary("#canto-library", tree_url, album_url, binary_url, search_url, detail_url);
+        initializeImageLibrary("#canto-library", tree_url, album_url, binary_url, search_url, detail_url);
     </script>
 {% endblock %}
 

@@ -98,16 +98,21 @@ class CantoSettingsView(PermissionRequiredMixin, FormView):
         return error_code, error_message
 
 
-class CantoLibraryView(PermissionRequiredMixin, TemplateView):
+class CantoImageLibraryView(PermissionRequiredMixin, TemplateView):
     permission_required = "canto.browse_library"
-    template_name = "canto/library.html"
-    title = _("Canto library")
+    template_name = "canto/image_library.html"
+    title = _("Canto image library")
     paginate_by = 100
 
     def get_context_data(self, **kwargs):
         context = {"title": self.title}
         context.update(kwargs)
         return super().get_context_data(**context)
+    
+    
+class CantoFolderLibraryView(CantoImageLibraryView):
+    template_name = "canto/folder_library.html"
+    title = _("Canto folder library")
 
 
 @permission_required("canto.browse_library", raise_exception=True)
